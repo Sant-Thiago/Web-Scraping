@@ -27,3 +27,10 @@ class ConectionMongo:
         if self.client:
             self.client.close()
             print('[INFO] Conexão com MongoBD fechada.')
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
+        

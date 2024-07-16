@@ -1,14 +1,12 @@
-import flask    
-from database.ConectionMongo import ConectionMongo 
+from flask import Flask    
+from controller.DynamicController import app as dc 
 
-con = ConectionMongo()
+# Inicia o aplicativo Flask
+app = Flask(__name__)
 
-dbs = con.listar()
+# Torna os endpoints acessiveis através do aplicativo Flask
+app.register_blueprint(dc)
 
-try:
-    dbs = con.listar()
-    print(f'Bancos de dados: {dbs}')
-except Exception as e:
-    print(f"Erro ao listar bancos de dados: {e}")
-
-con.close()
+if __name__ == "__main__":
+    # Inicia o servidor Flask
+    app.run(debug=True)
