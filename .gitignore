@@ -7,8 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-/backend/database/__pycache__
-/backend/controller/__pycache__
+*__pycache__*
 .venv
 node_modules
 dist
