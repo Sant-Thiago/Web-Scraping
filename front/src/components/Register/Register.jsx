@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import Input from '../Input/Input';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import $ from 'jquery';
 
-import Input from '../Input/Input'
+import Input from '../Input/Input';
 import './Register.css'
+import Title from '../Title/Title';
 
 function Register() {
+
+    const navigate = useNavigate();
 
     const [inputForm, setInputForm] = useState({
         nome: '',
@@ -21,6 +24,8 @@ function Register() {
         });
     };
 
+    
+
     const handleSubmit = (event) => {
         // Chamado para evitar que o formulário seja enviado de forma tradicional (recarregando a página)
         event.preventDefault(); 
@@ -34,8 +39,9 @@ function Register() {
                 cpf: inputForm.cpf
             }),
             success: response => {
-                console.log('[SUCESS]:: '+ JSON.stringify(response));
-                
+                setTimeout(() => {
+                    navigate("/search")
+                })         
             },
             error: (xhr, status, error) => {
                 console.log('xhr aqui ==> '+ JSON.stringify(xhr));
@@ -43,11 +49,15 @@ function Register() {
                 // console.log('Erro aqui ==> '+ error);
             }
         });
+
     };
     
     return (
         <div className='registerContainer'>
-            <form onSubmit={handleSubmit} method="POST" className='regiterForm'>
+            <Title 
+                type={'| Cadastro'}
+            />
+            <form onSubmit={handleSubmit} method="POST" className='registerForm'>
                 {Object.keys(inputForm).map((key, index) => ( 
                     <Input 
                         key={index} 

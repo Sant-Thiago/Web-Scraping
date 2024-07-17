@@ -2,32 +2,32 @@ import React, { useState } from 'react';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import './App.css';
 import Register from './components/Register/Register';
-import Register from './components/Register/Register';
-
+import Login from './components/Login/Login';
+import Search from './components/Search/Search';
 
 function App() {
 
   const [type, setType] = useState('');
 
+  
   return (
     <div className='containerApp'>
-      <h1>Web Scraping {type}</h1>
-      <div className="divisor"></div>
       <BrowserRouter>
         <Routes>
           <Route 
-            Component={() => <Register setType={setType('| Cadastro')} />} 
             path='/' 
+            element={<Login />} 
             exact 
           ></Route>
           <Route 
-            Component={() => <Register setType={setType('| Cadastro')} />} 
-            path='/julia' 
-            exact 
+            path='/register' 
+            element={<Register />} 
           ></Route>
-
+          <Route 
+            path='/search'
+            element={ <Search /> } 
+          ></Route>
         </Routes>
-        {/* <Route Component={ product } path='/product'></Route> */}
       </BrowserRouter>
       <div id='result'></div>
     </div>

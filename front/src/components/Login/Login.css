@@ -1,0 +1,7 @@
+.loginContainer {
+    display: flex;
+    flex-flow: column;
+
+    width: 80%;
+    height: 80%;
+}

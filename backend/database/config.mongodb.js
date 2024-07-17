@@ -1,7 +1,7 @@
 /* config MongoDB */
 
 const database = 'Web-Scraping';
-const collections = ['User', 'Product'];
+const collections = ['User', 'Search'];
 
 // Create a new database.
 use(database);

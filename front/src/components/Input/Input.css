@@ -38,6 +38,12 @@
     padding-left: 3px;
 }
 
+.inputField::placeholder::after {
+    content: 'Pesquisa...';
+    color: white;
+    padding-left: 3px;
+}
+
 .inputButton {
     width: 10%;
     

@@ -69,6 +69,46 @@ def dynamicSelectAll():
     except Exception as e:
         return jsonify({'error': 'Erro interno no servidor', 'exception': str(e)}), 500
 
+
+# Endpoint para selecionar dinamicamente
+@app.route('/select/wsdata/by', methods=['GET'])
+def dynamicSelectBy():
+    try:
+        # Obtém a collection dos parametros do URL
+        collection_name = request.args.get('collection')
+        if not collection_name:
+            raise ValueError('Parâmetro "collection" não especificada')
+        
+        # Obtém o field dos parametros do URL
+        cod = request.args.get('cpf')
+        if not cod:
+            raise ValueError('Parâmetro "cpf" não especificado')
+        
+        # Cria um contexto de gerenciamento
+        with ConectionMongo() as con:
+            # Conectando e usando a coleção
+            collection = con.use(collection_name)
+            if collection is None:
+                return jsonify({'error': f'Coleção "{collection_name}" não encontrado!'}), 404
+
+            # Seleciona tudo pelo cpf
+            records = collection.find_one({ 'cpf': cod })
+            if records is None:
+                return jsonify({'error': f'Usuário com cpf:: "{cod}" não encontrado!'})
+
+            # Converte ObjectId para String
+            for record in records:
+                record['_id'] = str(record['_id'])
+
+            return jsonify(records), 200
+    
+    except ValueError as ve:
+        return jsonify({'error': str(ve)}), 400
+    
+    except Exception as e:
+        return jsonify({'error': 'Erro interno no servidor', 'exception': str(e)}), 500
+
+
 # Endpoint para atualizar dinamicamente
 @app.route('/update/wsdata', methods=['PUT'])
 def dynamicUpdate():

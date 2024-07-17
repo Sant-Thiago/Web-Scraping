@@ -1,10 +1,18 @@
 import pymongo
 import pymongo.errors
+import urllib.parse
 
 class ConectionMongo:
     def __init__(self):
         try:
+            mongo_host = 'localhost'
+            mongo_port = 27017
+            mongo_user = urllib.parse.quote_plus('admin')
+            mongo_password = urllib.parse.quote_plus('Senh4ForT3&S3GUr@')
+            database_name = 'Web-Scraping'
+            
             url = 'mongodb+srv://Thiago123:Thiago123@tigoscluster.0nmjkid.mongodb.net/?appName=TigosCluster'
+            # url = f'mongodb://{mongo_user}:{mongo_password}@{mongo_host}:{mongo_port}/{database_name}?authSource=admin'
 
             # Criação do cliente MongoBD
             self.client = pymongo.MongoClient(url)

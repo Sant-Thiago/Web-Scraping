@@ -19,7 +19,6 @@ function Input({value, hasButton, name, type, inputMode, placeholder, event}) {
                     <button 
                         type="submit" 
                         className="inputButton" 
-                        onClick={() => {setValor("")}}
                     >
                         Enviar
                     </button>
