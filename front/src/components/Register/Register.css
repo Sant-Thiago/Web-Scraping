@@ -3,7 +3,7 @@
     height: 25vh;
 }
 
-.regiterForm {
+.registerForm {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
