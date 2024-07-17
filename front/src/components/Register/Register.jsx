@@ -35,7 +35,7 @@ function Register() {
             }),
             success: response => {
                 console.log('[SUCESS]:: '+ JSON.stringify(response));
-                <Input/>
+                
             },
             error: (xhr, status, error) => {
                 console.log('xhr aqui ==> '+ JSON.stringify(xhr));
